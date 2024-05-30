@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: machine-id-checker
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: machine-id-checker
+  template:
+    metadata:
+      labels:
+        app: machine-id-checker
+    spec:
+      containers:
+      - name: machine-id-checker-container
+        image: 975050376304.dkr.ecr.us-west-2.amazonaws.com/machine-id-checker-name:latest
+        ports:
+        - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: machine-id-checker-service
+spec:
+  selector:
+    app: machine-id-checker
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: ClusterIP
