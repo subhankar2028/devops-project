@@ -16,7 +16,7 @@ spec:
       - name: machine-id-checker-container
         image: 975050376304.dkr.ecr.us-west-2.amazonaws.com/machine-id-checker-name:latest
         ports:
-        - containerPort: 80
+        - containerPort: 5000
 
 ---
 apiVersion: v1
@@ -29,5 +29,5 @@ spec:
   ports:
   - protocol: TCP
     port: 80
-    targetPort: 80
+    targetPort: 5000
   type: LoadBalancer #ClusterIP
