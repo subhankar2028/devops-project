@@ -43,11 +43,11 @@ pipeline {
         
         stage('Get kubeconfig') {
             steps {
-                withCredentials([aws(credentialsId: 'subhankar2028getkubeconfig', accessKeyVariable: 'AKIA6GBMIARYIYJJU2WW', secretKeyVariable: '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')]) {
+                withCredentials([aws(credentialsId: 'subhankar2028getkubeconfig', accessKeyVariable: '***', secretKeyVariable: '***')]) {
                     script {
                         // Configure AWS CLI to use the provided credentials
-                        sh "aws configure set aws_access_key_id AKIA6GBMIARYIYJJU2WW"
-                        sh "aws configure set aws_secret_access_key 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"
+                        sh "aws configure set aws_access_key_id ***"
+                        sh "aws configure set aws_secret_access_key ***"
                         sh "aws configure set region us-west-2"
                         
                         // Update kubeconfig
