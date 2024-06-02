@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Git-Clone') {
             steps {
-                git branch: 'main', credentialsId: 'b8ac2eb5-066e-4645-a748-561770c36fc7', url: 'https://github.com/subhankar2028/devops-project.git'
+                git branch: 'main', credentialsId: '***', url: 'https://github.com/subhankar2028/devops-project.git'
             }
         }
         
@@ -34,7 +34,7 @@ pipeline {
         stage('Push to ECR') {
             steps {
                 script {
-                    withDockerRegistry(credentialsId: 'ecr:us-west-2:72b70dc7-cce6-4caf-9e14-a88e2e3ada25', url: 'https://975050376304.dkr.ecr.us-west-2.amazonaws.com') {
+                    withDockerRegistry(credentialsId: '***', url: 'https://975050376304.dkr.ecr.us-west-2.amazonaws.com') {
                         sh "docker push 975050376304.dkr.ecr.us-west-2.amazonaws.com/machine-id-checker-name"
                     }
                 }
@@ -43,7 +43,7 @@ pipeline {
         
         stage('Get kubeconfig') {
             steps {
-                withCredentials([aws(credentialsId: 'subhankar2028getkubeconfig', accessKeyVariable: '***', secretKeyVariable: '***')]) {
+                withCredentials([aws(credentialsId: '***', accessKeyVariable: '***', secretKeyVariable: '***')]) {
                     script {
                         // Configure AWS CLI to use the provided credentials
                         sh "aws configure set aws_access_key_id ***"
