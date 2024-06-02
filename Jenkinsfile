@@ -40,22 +40,22 @@ pipeline {
                 }
             }
         }
-        
-        stage('Get kubeconfig') {
-            steps {
-                withCredentials([aws(credentialsId: '***', accessKeyVariable: '***', secretKeyVariable: '***')]) {
-                    script {
-                        // Configure AWS CLI to use the provided credentials
-                        sh "aws configure set aws_access_key_id ***"
-                        sh "aws configure set aws_secret_access_key ***"
-                        sh "aws configure set region us-west-2"
+        // Uncomment this block when needed. Remember this block is comented because th credentials can not push to git.        
+        // stage('Get kubeconfig') {
+        //     steps {
+        //         withCredentials([aws(credentialsId: '***', accessKeyVariable: '***', secretKeyVariable: '***')]) {
+        //             script {
+        //                 // Configure AWS CLI to use the provided credentials
+        //                 sh "aws configure set aws_access_key_id ***"
+        //                 sh "aws configure set aws_secret_access_key ***"
+        //                 sh "aws configure set region us-west-2"
                         
-                        // Update kubeconfig
-                        sh "aws eks --region us-west-2 update-kubeconfig --name machine-id-viewer-cluster"
-                    }
-                }
-            }
-        }
+        //                 // Update kubeconfig
+        //                 sh "aws eks --region us-west-2 update-kubeconfig --name machine-id-viewer-cluster"
+        //             }
+        //         }
+        //     }
+        // }
         
         stage('Kubernetes Deploy') {
             steps {
